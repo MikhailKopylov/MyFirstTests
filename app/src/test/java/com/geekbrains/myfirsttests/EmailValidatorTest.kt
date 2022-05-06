@@ -41,4 +41,28 @@ class EmailValidatorTest {
         assertFalse(EmailValidator.isValidEmail(null))
     }
 
+    @Test
+    fun `emailValidator invalid email no domain returnsFalse`(){
+        assertFalse(EmailValidator.isValidEmail("vasya@email."))
+    }
+
+    @Test
+    fun `emailValidator invalid email double @@ returnsFalse`(){
+        assertFalse(EmailValidator.isValidEmail("vasya@@email.com"))
+    }
+
+    @Test
+    fun `emailValidator invalid email user name with non latin alphabet returnsFalse`(){
+        assertFalse(EmailValidator.isValidEmail("vasyaФ@email.com"))
+    }
+
+    @Test
+    fun `emailValidator invalid email name with non latin alphabet returnsFalse`(){
+        assertFalse(EmailValidator.isValidEmail("vasya@emailФ.com"))
+    }
+
+    @Test
+    fun `emailValidator invalid email domain with non latin alphabet returnsFalse`(){
+        assertFalse(EmailValidator.isValidEmail("vasya@email.comФ"))
+    }
 }
